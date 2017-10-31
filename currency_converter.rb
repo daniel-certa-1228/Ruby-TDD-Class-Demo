@@ -14,7 +14,6 @@ class CurrencyConverter
   end
 
   def convert_currency_two_to_one(amount)
-    conversion_rate = @conversion_rate
-    amount * (1.0 / conversion_rate)
+    amount * (1.0 / @conversion_rate)
   end
 end

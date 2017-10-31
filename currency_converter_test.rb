@@ -1,3 +1,4 @@
+require 'minitest/autorun'
 require_relative 'currency_converter'
 
 class CurrencyConverterTest < Minitest::Test
@@ -32,7 +33,6 @@ class CurrencyConverterTest < Minitest::Test
     end
 
     @converted_value = @apples_to_oranges.convert_currency_one_to_two(@amount)
-
     @expected_value = @amount * @apples_to_oranges.conversion_rate
 
     assert_equal @expected_value, @converted_value
@@ -42,13 +42,11 @@ class CurrencyConverterTest < Minitest::Test
     assert_raises ArgumentError do
       @apples_to_oranges.convert_currency_two_to_one
     end
-    @converted_value = @apples_to_oranges.convert_currency_two_to_one(@amount)
 
-    conversion_rate = @apples_to_oranges.conversion_rate
-    @expected_value = @amount * (1.0 / conversion_rate)
+    @converted_value = @apples_to_oranges.convert_currency_two_to_one(@amount)
+    @expected_value = @amount * (1.0 / @apples_to_oranges.conversion_rate)
 
     assert_equal @expected_value, @converted_value
-
   end
 
 end
