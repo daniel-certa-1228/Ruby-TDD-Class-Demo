@@ -1,4 +1,3 @@
-require 'minitest/autorun'
 require_relative 'currency_converter'
 
 class CurrencyConverterTest < Minitest::Test
