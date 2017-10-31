@@ -1,6 +1,6 @@
 class CurrencyConverter
 
-  attr_accessor :currency_one, :currency_two, :conversion_rate
+  attr_accessor :currency_one, :currency_two, :conversion_rate, :reverse_conversion_rate
 
   def initialize(currency_one, currency_two, conversion_rate)
 
@@ -14,6 +14,14 @@ class CurrencyConverter
   end
 
   def convert_currency_two_to_one(amount)
-    amount * (1.0 / @conversion_rate)
+    if @reverse_conversion_rate
+      amount * @reverse_coversion_rate
+    else
+      amount * self.reverse_conversion_rate
+    end
+  end
+
+  def reverse_conversion_rate
+    @reverse_coversion_rate = 1.0/@conversion_rate
   end
 end

@@ -1,6 +1,10 @@
 require 'minitest/autorun'
 require_relative 'currency_converter'
 
+# test types of agruments
+# convert or write exceptions
+# test for if/else statement in convert test_convert_currency_two_to_one
+
 class CurrencyConverterTest < Minitest::Test
 
   def setup
@@ -44,9 +48,19 @@ class CurrencyConverterTest < Minitest::Test
     end
 
     @converted_value = @apples_to_oranges.convert_currency_two_to_one(@amount)
-    @expected_value = @amount * (1.0 / @apples_to_oranges.conversion_rate)
+    @expected_value = @amount * @apples_to_oranges.reverse_conversion_rate
 
     assert_equal @expected_value, @converted_value
+  end
+
+  def test_reverse_conversion_rate
+
+    assert_raises ArgumentError do
+      @apples_to_oranges.reverse_conversion_rate('arg1')
+    end
+    @expected_value = 1.0/@apples_to_oranges.conversion_rate
+    assert_equal @expected_value, @apples_to_oranges.reverse_conversion_rate
+
   end
 
 end
